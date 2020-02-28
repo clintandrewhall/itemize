@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Begin basic Apollo GraphQL API",
   "scripts": {
+    "postinstall": "(cd lib/http/post-graphql && npm install);",
     "lint": "eslint lib --ext ts --ignore-pattern node_modules --fix",
     "build": "npx babel ./lib -d ./src --extensions '.ts' --copy-files --include-dotfiles --ignore lib/**/node_modules",
     "start": "npm run build && npx sandbox",
