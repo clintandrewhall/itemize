@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "files": ["./lib/http/post-graphql/index.ts"],
+  "exclude": ["node_modules", "./lib/http/post-graphql/node_modules"]
+}
