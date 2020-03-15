@@ -1,5 +1,5 @@
 import arc from '@architect/functions';
-import { isAuth, getAuthUrl } from '../../auth';
+import { isAuth, getAuthUrl } from '@architect/shared/auth';
 
 const html = `
 <!doctype html>

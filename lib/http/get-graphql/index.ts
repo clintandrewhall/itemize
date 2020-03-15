@@ -1,5 +1,5 @@
 import arc from '@architect/functions';
-import { middleware } from '../../auth';
+import { middleware } from '@architect/shared/auth';
 
 const http = req => ({
   headers: { 'content-type': 'text/html; charset=utf8' },
@@ -33,7 +33,7 @@ const http = req => ({
         justify-content: center;
       }
 
-      
+
       .loading {
         font-size: 32px;
         font-weight: 200;

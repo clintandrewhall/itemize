@@ -26,7 +26,7 @@ export const github = async request => {
     GITHUB_REDIRECT: redirect_uri
   } = process.env;
 
-  const code = request.query;
+  const { code } = request.query;
 
   // trade the code for an access token
   const result = await tiny.post({

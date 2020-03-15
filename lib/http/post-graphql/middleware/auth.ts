@@ -1,4 +1,4 @@
-import {isAuth, getAuthUrl} from '../../../auth';
+import { isAuth, getAuthUrl } from '@architect/shared/auth';
 
 export const auth = async req => {
   if (!isAuth(req)) {

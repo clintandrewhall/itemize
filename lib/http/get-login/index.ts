@@ -1,5 +1,5 @@
 import arc from '@architect/functions';
-import { github } from '../../auth';
+import { github } from '@architect/shared/auth';
 
 const login = async request => {
   if (request.query.code) {
