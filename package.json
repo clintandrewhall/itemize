@@ -1,30 +1,41 @@
 {
-  "name": "begin-app",
+  "name": "itemize",
+  "private": true,
   "version": "0.0.0",
   "description": "Begin basic Apollo GraphQL API",
   "scripts": {
     "lint": "eslint lib --ext ts --ignore-pattern node_modules --fix",
-    "build": "./scripts/build",
-    "start": "npm run build && npx sandbox",
+    "routes:install": "node scripts/route-install",
+    "routes:build": "npm run routes:install && npx babel ./lib -d ./src --extensions '.ts' --copy-files --include-dotfiles --ignore lib/**/node_modules",
+    "install": "npm run routes:install",
+    "build": "npm run build:routes",
+    "watch": "npm run build -- --watch",
+    "start": "concurrently \"npm run watch\" \"npx sandbox\"",
     "deploy": "npm run build && npx deploy",
     "test": "cross-env NODE_ENV=testing PORT=6666 tape test/*-test.js ./test/**/*-test.js | tap-spec"
   },
   "dependencies": {
-    "@architect/sandbox": "latest",
+    "@architect/sandbox": "^1.7.2",
     "@begin/data": "latest",
+    "@types/node": "^13.9.1",
+    "concurrently": "^5.1.0",
     "cross-env": "^6.0.3",
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "tap-spec": "^5.0.0",
-    "tape": "^4.11.0",
+    "tape": "^4.13.2",
     "tiny-json-http": "^7.1.2"
   },
   "devDependencies": {
+    "@architect/architect": "latest",
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.6",
+    "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
-    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-env": "^7.8.7",
     "@babel/preset-typescript": "^7.8.3",
-    "typescript": "^3.8.2"
+    "bufferutil": "^4.0.1",
+    "tslint": "^6.1.0",
+    "typescript": "^3.8.3",
+    "utf-8-validate": "^5.0.2"
   }
 }

@@ -1,8 +1,13 @@
 {
-  "name": "begin-app-post-graphql",
+  "name": "itemize-post-graphql",
+  "private": true,
   "dependencies": {
     "@architect/functions": "^3.7.6",
     "apollo-server-lambda": "^2.10.1",
-    "graphql": "^14.6.0"
+    "graphql": "^14.6.0",
+    "xss": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.7"
   }
 }

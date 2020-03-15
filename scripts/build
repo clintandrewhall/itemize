@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-(cd lib/http/post-graphql && npm install);
-npx babel ./lib -d ./src --extensions '.ts' --copy-files --include-dotfiles --ignore lib/**/node_modules
