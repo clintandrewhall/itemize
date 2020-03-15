@@ -8,7 +8,7 @@
     "routes:install": "node scripts/route-install",
     "routes:build": "npm run routes:install && npx babel ./lib -d ./src --extensions '.ts' --copy-files --include-dotfiles --ignore lib/**/node_modules",
     "install": "npm run routes:install",
-    "build": "npm run build:routes",
+    "build": "npm run routes:build",
     "watch": "npm run build -- --watch",
     "start": "concurrently \"npm run watch\" \"npx sandbox\"",
     "deploy": "npm run build && npx deploy",
