@@ -1,17 +1,17 @@
 import arc from '@architect/functions';
-import { github } from '@architect/shared/auth';
+import { tradeCodeForUser } from '../../common/github/code';
 
 const login = async request => {
   if (request.query.code) {
-    let account = await github(request);
+    let account = await tradeCodeForUser(request);
 
     return {
       session: { account },
-      location: '/admin'
+      location: '/admin',
     };
   } else {
     return {
-      location: '/?authorized=false'
+      location: '/?authorized=false',
     };
   }
 };

@@ -1,5 +1,5 @@
 import arc from '@architect/functions';
-import { middleware } from '@architect/shared/auth';
+import { middleware } from '../../common/github/auth';
 
 const http = async req => ({
   html: `
@@ -12,7 +12,7 @@ const http = async req => ({
 </form>
 <pre>${JSON.stringify(req.session.account, null, 2)}</pre>
 </body>
-</html>`
+</html>`,
 });
 
 export const handler = arc.http.async(middleware, http);

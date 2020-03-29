@@ -17,8 +17,8 @@ let schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
     Query: { draft, drafts },
-    Mutation: { account, save, destroy }
-  }
+    Mutation: { account, save, destroy },
+  },
 });
 
 /** graphql middleware */
@@ -30,14 +30,14 @@ export const query = async ({ body, session }) => {
       {},
       session,
       body.variables,
-      body.operationName
+      body.operationName,
     );
     return {
-      json: result
+      json: result,
     };
   } catch (e) {
     return {
-      json: { error: e.name, message: e.message, stack: e.stack }
+      json: { error: e.name, message: e.message, stack: e.stack },
     };
   }
 };

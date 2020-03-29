@@ -1,5 +1,5 @@
 import arc from '@architect/functions';
-import { middleware } from '@architect/shared/auth';
+import { middleware } from '../../common/github/auth';
 
 const http = req => ({
   headers: { 'content-type': 'text/html; charset=utf8' },
@@ -68,7 +68,7 @@ const http = req => ({
 </body>
 
 </html>
-`
+`,
 });
 
 export const handler = arc.http.async(middleware, http);

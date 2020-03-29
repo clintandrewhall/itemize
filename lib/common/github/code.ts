@@ -1,29 +1,10 @@
 import tiny from 'tiny-json-http';
 
-export const isAuth = req => {
-  return req.session && req.session.account;
-};
-
-export const getAuthUrl = () => {
-  let client_id = process.env.GITHUB_CLIENT_ID;
-  let redirect_uri = process.env.GITHUB_REDIRECT;
-  let base = 'https://github.com/login/oauth/authorize';
-  return `${base}?client_id=${client_id}&redirect_uri=${redirect_uri}`;
-};
-
-export const middleware = req => {
-  if (!isAuth(req)) {
-    return {
-      location: '/'
-    };
-  }
-};
-
-export const github = async request => {
+export const tradeCodeForUser = async request => {
   const {
     GITHUB_CLIENT_ID: client_id,
     GITHUB_CLIENT_SECRET: client_secret,
-    GITHUB_REDIRECT: redirect_uri
+    GITHUB_REDIRECT: redirect_uri,
   } = process.env;
 
   const { code } = request.query;
@@ -36,8 +17,8 @@ export const github = async request => {
       code,
       client_id,
       client_secret,
-      redirect_uri
-    }
+      redirect_uri,
+    },
   });
 
   const token = result.body.access_token;
@@ -45,7 +26,7 @@ export const github = async request => {
   // use the access token to get the user account
   const user = await tiny.get({
     url: `https://api.github.com/user?access_token=${token}`,
-    headers: { Accept: 'application/json' }
+    headers: { Accept: 'application/json' },
   });
 
   // create a clean acccount obj
@@ -56,6 +37,6 @@ export const github = async request => {
     login,
     id,
     url,
-    avatar_url
+    avatar_url,
   };
 };

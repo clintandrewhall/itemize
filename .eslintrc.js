@@ -1,14 +1,25 @@
 module.exports = {
+  extends: 'eslint:recommended',
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 8,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+      experimentalObjectRestSpread: true,
+    },
+  },
   env: {
     node: true,
-    es6: true
+    es6: true,
   },
-  extends: 'eslint:recommended',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module'
+  settings: {
+    'import/resolver': {
+      'babel-plugin-root-import': {},
+    },
   },
   rules: {
+    indent: ['error', 2],
     // enable additional rules
     'linebreak-style': ['error', 'unix'],
     // node specific
@@ -25,6 +36,6 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'no-unused-vars': ['error', { args: 'none' }],
     quotes: ['error', 'single'],
-    "semi": "error"
-  }
+    semi: 'error',
+  },
 };

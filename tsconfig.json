@@ -4,11 +4,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./lib",
-    "paths": {
-      "@architect/shared/*": ["shared/*"]
-    }
+    "baseUrl": "./lib"
   },
   "include": ["./lib/**/*", "./types"],
-  "exclude": ["node_modules", "./lib/http/post-graphql/node_modules"]
+  "exclude": ["node_modules"]
 }

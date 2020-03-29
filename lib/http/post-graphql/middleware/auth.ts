@@ -1,4 +1,4 @@
-import { isAuth, getAuthUrl } from '@architect/shared/auth';
+import { isAuth, getAuthUrl } from '../../../common/github/auth';
 
 export const auth = async req => {
   if (!isAuth(req)) {
@@ -7,8 +7,8 @@ export const auth = async req => {
       json: {
         error: 'not_authorized',
         message: 'please sign in',
-        href: getAuthUrl()
-      }
+        href: getAuthUrl(),
+      },
     };
   }
 };
