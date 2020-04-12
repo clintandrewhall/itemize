@@ -1,30 +1,23 @@
 import { graphql } from 'graphql';
 import { makeExecutableSchema } from 'graphql-tools';
+import typeDefs from '../schema.graphql';
 
-import fs from 'fs';
-import path from 'path';
+// read resolvers
+import { readAccount, mutateAccount, hello } from '../resolvers';
 
-// 1. read resolvers
-import { account, draft, drafts, save, destroy } from '../resolvers';
-
-// 2. read the schema
-let typeDefs = fs
-  .readFileSync(path.join(__dirname, '..', 'schema.graphql'))
-  .toString();
-
-// 3. combine resolvers and schema
-let schema = makeExecutableSchema({
+// combine resolvers and schema
+const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
-    Query: { draft, drafts },
-    Mutation: { account, save, destroy },
+    Query: { hello, account: readAccount },
+    Mutation: { account: mutateAccount },
   },
 });
 
 /** graphql middleware */
 export const query = async ({ body, session }) => {
   try {
-    let result = await graphql(
+    const result = await graphql(
       schema,
       body.query,
       {},

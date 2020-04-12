@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@architect/functions": "^3.7.6"
+    "@architect/functions": "^3.7.6",
+    "tiny-json-http": "^7.1.2"
   }
 }

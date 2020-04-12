@@ -1,9 +1,9 @@
 import arc from '@architect/functions';
-import { tradeCodeForUser } from '../../common/github/code';
+import { github } from '../../common/github';
 
 const login = async request => {
   if (request.query.code) {
-    let account = await tradeCodeForUser(request);
+    const account = await github(request);
 
     return {
       session: { account },

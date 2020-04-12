@@ -1,5 +1,5 @@
 import arc from '@architect/functions';
-import { isAuth, getAuthUrl } from '../../common/github/auth';
+import { isAuth, getAuthUrl } from '../../common/auth';
 
 const html = `
 <!doctype html>
@@ -12,7 +12,7 @@ const html = `
 async function http(req) {
   if (isAuth(req)) {
     return {
-      location: '/graphql',
+      location: '/admin',
     };
   }
 

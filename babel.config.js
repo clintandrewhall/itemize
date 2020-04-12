@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(false);
   return {
     exclude: 'node_modules/**',
@@ -15,7 +15,6 @@ module.exports = function(api) {
       ],
     ],
     plugins: [
-      '@babel/plugin-transform-reserved-words',
       '@babel/proposal-class-properties',
       '@babel/proposal-object-rest-spread',
     ],

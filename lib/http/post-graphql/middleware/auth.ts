@@ -1,4 +1,4 @@
-import { isAuth, getAuthUrl } from '../../../common/github/auth';
+import { isAuth, getAuthUrl } from '../../../common/auth';
 
 export const auth = async req => {
   if (!isAuth(req)) {

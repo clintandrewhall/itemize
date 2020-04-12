@@ -1,6 +1,10 @@
 module.exports = {
-  extends: 'eslint:recommended',
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+  extends: [
+    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
   parserOptions: {
     ecmaVersion: 8,
     sourceType: 'module',
@@ -28,14 +32,19 @@ module.exports = {
     // override default options for rules from base configurations
     'no-cond-assign': ['error', 'always'],
     // disable rules from base configurations
-    'arrow-body-style': 'off',
-    'no-console': 'off',
-    'no-inner-declarations': 'off',
-    'no-redeclare': 'off',
+    'arrow-body-style': ['warn', 'as-needed'],
+    'no-console': 'warn',
     // style specific
     'no-trailing-spaces': 'error',
     'no-unused-vars': ['error', { args: 'none' }],
     quotes: ['error', 'single'],
     semi: 'error',
+    curly: ['error', 'all'],
+    'arrow-parens': ['warn', 'as-needed'],
+    camelcase: ['warn', { properties: 'never', ignoreDestructuring: true }],
+    '@typescript-eslint/camelcase': [
+      'warn',
+      { properties: 'never', ignoreDestructuring: true },
+    ],
   },
 };

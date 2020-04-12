@@ -3,9 +3,8 @@ const { resolve } = require('path');
 const { join } = require('path');
 const cp = require('child_process');
 const os = require('os');
-const lib = resolve(__dirname, '../lib/http');
 
-fs.readdirSync(lib).forEach(mod => {
+const install = (lib, mod) => {
   const modPath = join(lib, mod);
 
   // ensure path has package.json
@@ -18,4 +17,11 @@ fs.readdirSync(lib).forEach(mod => {
 
   // install folder
   cp.spawn(npmCmd, ['i'], { env: process.env, cwd: modPath, stdio: 'inherit' });
-});
+};
+
+module.exports = {
+  install: (path) => {
+    const lib = resolve(__dirname, path);
+    fs.readdirSync(lib).forEach((mod) => install(lib, mod));
+  },
+};

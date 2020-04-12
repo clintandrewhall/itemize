@@ -1,5 +1,5 @@
 import arc from '@architect/functions';
-import { middleware } from '../../common/github/auth';
+import { middleware } from '../../common/auth';
 
 const http = async req => ({
   html: `

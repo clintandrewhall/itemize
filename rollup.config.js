@@ -1,15 +1,17 @@
 import path from 'path';
 import fs from 'fs';
 
-import nodePolyfills from 'rollup-plugin-node-polyfills';
+import autoExternal from 'rollup-plugin-auto-external';
 import babel from 'rollup-plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 import resolve from '@rollup/plugin-node-resolve';
+import graphql from 'rollup-plugin-graphql';
 
 const lib = path.resolve(__dirname, 'lib/http');
 const configs = [];
 
-fs.readdirSync(lib).forEach(mod => {
+fs.readdirSync(lib).forEach((mod) => {
   if (mod.startsWith('.')) {
     return;
   }
@@ -23,10 +25,28 @@ fs.readdirSync(lib).forEach(mod => {
       dir: src,
       format: 'cjs',
     },
-    external: [],
     plugins: [
-      resolve({ extensions: ['.js', '.ts'], preferBuiltins: true }),
+      autoExternal({
+        packagePath: lib,
+      }),
+      resolve({ extensions: ['.js', '.ts'] }),
+      graphql(),
       babel(),
+      commonjs(),
+      copy({
+        targets: [
+          {
+            src: [
+              `${lib}/*`,
+              `${lib}/.*`,
+              `!${lib}/**/*.ts`,
+              `!${lib}/node_modules`,
+            ],
+            dest: src,
+          },
+        ],
+        copyOnce: true,
+      }),
     ],
   });
 });

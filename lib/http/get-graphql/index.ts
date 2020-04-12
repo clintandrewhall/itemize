@@ -1,7 +1,7 @@
 import arc from '@architect/functions';
-import { middleware } from '../../common/github/auth';
+import { middleware } from '../../common/auth';
 
-const http = req => ({
+const http = () => ({
   headers: { 'content-type': 'text/html; charset=utf8' },
   body: `
 <!DOCTYPE html>

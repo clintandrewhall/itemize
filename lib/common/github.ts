@@ -1,10 +1,10 @@
 import tiny from 'tiny-json-http';
 
-export const tradeCodeForUser = async request => {
+export const github = async request => {
   const {
-    GITHUB_CLIENT_ID: client_id,
-    GITHUB_CLIENT_SECRET: client_secret,
-    GITHUB_REDIRECT: redirect_uri,
+    GITHUB_CLIENT_ID: clientId,
+    GITHUB_CLIENT_SECRET: clientSecret,
+    GITHUB_REDIRECT: redirectUri,
   } = process.env;
 
   const { code } = request.query;
@@ -15,9 +15,9 @@ export const tradeCodeForUser = async request => {
     headers: { Accept: 'application/json' },
     data: {
       code,
-      client_id,
-      client_secret,
-      redirect_uri,
+      client_id: clientId,
+      client_secret: clientSecret,
+      redirect_uri: redirectUri,
     },
   });
 

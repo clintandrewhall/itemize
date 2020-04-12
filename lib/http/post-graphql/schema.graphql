@@ -5,19 +5,11 @@ type Account {
   login: String
 }
 
-type Draft {
-  key: ID!
-  title: String
-  body: String
-}
-
 type Query {
-  draft(key: String): Draft
-  drafts(cursor: String): [Draft]
+  hello: String
+  account: Account
 }
 
 type Mutation {
   account: Account
-  save(title: String!, body: String!): Draft
-  destroy(key: String!): Boolean
 }
