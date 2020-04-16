@@ -3,8 +3,14 @@
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
+    "baseUrl": "./lib",
+    // Don't emit; allow Babel to transform files.
+    "noEmit": true,
+    // Enable strictest settings like strictNullChecks & noImplicitAny.
+    "strict": true,
+    // Import non-ES modules as default imports.
     "esModuleInterop": true,
-    "baseUrl": "./lib"
+    "jsx": "react"
   },
   "include": ["./lib/**/*", "./types"],
   "exclude": ["node_modules"]

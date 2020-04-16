@@ -17,7 +17,12 @@
     "start": "concurrently \"npm run watch\" \"npx sandbox\"",
     "deploy": "npm run build && npx deploy"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
   "devDependencies": {
     "@architect/architect": "latest",
     "@architect/sandbox": "latest",
@@ -26,7 +31,9 @@
     "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
@@ -38,6 +45,8 @@
     "babel-node-ts": "^1.0.3",
     "babel-plugin-relay": "^9.0.0",
     "babel-plugin-root-import": "^5.1.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "bufferutil": "^4.0.1",
     "concurrently": "^5.1.0",
     "cross-env": "^7.0.2",

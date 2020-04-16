@@ -3,7 +3,6 @@ module.exports = function (api) {
   return {
     exclude: 'node_modules/**',
     presets: [
-      ['@babel/typescript', { exclude: /node_modules/ }],
       [
         '@babel/preset-env',
         {
@@ -13,8 +12,11 @@ module.exports = function (api) {
           corejs: 3,
         },
       ],
+      ['@babel/typescript', { exclude: /node_modules/ }],
+      '@babel/preset-react',
     ],
     plugins: [
+      'transform-async-to-generator',
       '@babel/proposal-class-properties',
       '@babel/proposal-object-rest-spread',
     ],
