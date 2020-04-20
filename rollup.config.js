@@ -11,23 +11,30 @@ import graphql from 'rollup-plugin-graphql';
 const lib = path.resolve(__dirname, 'lib/http');
 const extensions = ['.js', '.ts', '.tsx'];
 const plugins = [
-  babel({ extensions }),
+  babel({
+    extensions,
+    exclude: 'node_modules/**',
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          targets: { node: 10 },
+          modules: 'false',
+          useBuiltIns: 'usage',
+          corejs: 3,
+        },
+      ],
+      ['@babel/typescript', { exclude: /node_modules/ }],
+      '@babel/preset-react',
+    ],
+    plugins: ['transform-async-to-generator'],
+  }),
   resolve({ extensions }),
   graphql(),
   commonjs(),
 ];
 
-const configs = [
-  {
-    external: ['react', 'react-dom'],
-    input: 'lib/app/index.tsx',
-    output: {
-      file: 'public/app/index.js',
-      format: 'cjs',
-    },
-    plugins,
-  },
-];
+const configs = [];
 
 fs.readdirSync(lib).forEach(mod => {
   const lib = `lib/http/${mod}`;

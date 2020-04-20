@@ -9,8 +9,8 @@ import { readAccount, mutateAccount, hello } from '../resolvers';
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers: {
-    Query: { hello, account: readAccount },
-    Mutation: { account: mutateAccount },
+    TestQuery: { hello, account: readAccount },
+    TestMutation: { account: mutateAccount },
   },
 });
 

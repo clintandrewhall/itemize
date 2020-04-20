@@ -1,7 +1,7 @@
 export const hello = async (root, args, session) => {
-  if (!session.account) {
-    throw Error('not authorized');
-  }
+  // if (!session.account) {
+  //   throw Error('not authorized');
+  // }
   return 'world';
 };
 

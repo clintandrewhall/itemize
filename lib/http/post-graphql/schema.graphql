@@ -1,15 +1,20 @@
-type Account {
+schema {
+  query: TestQuery
+  mutation: TestMutation
+}
+
+type User {
   id: ID!
   name: String
   avatar: String
   login: String
 }
 
-type Query {
+type TestQuery {
   hello: String
-  account: Account
+  account: User
 }
 
-type Mutation {
-  account: Account
+type TestMutation {
+  account: User
 }

@@ -23,7 +23,7 @@ import { RemoveTodoMutation } from './mutations/RemoveTodoMutation';
 import { RenameTodoMutation } from './mutations/RenameTodoMutation';
 
 const Query = new GraphQLObjectType({
-  name: 'Query',
+  name: 'ItemizeQuery',
   fields: {
     user: UserQuery,
     node: nodeField,
@@ -31,7 +31,7 @@ const Query = new GraphQLObjectType({
 });
 
 const Mutation = new GraphQLObjectType({
-  name: 'Mutation',
+  name: 'ItemizeMutation',
   fields: {
     addTodo: AddTodoMutation,
     changeTodoStatus: ChangeTodoStatusMutation,

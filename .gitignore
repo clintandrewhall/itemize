@@ -1,6 +1,6 @@
 .arc-env
 .DS_Store
 node_modules
-src
 .vscode
-!lib/**/src
+build
+src/http

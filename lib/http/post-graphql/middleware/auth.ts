@@ -1,4 +1,4 @@
-import { isAuth, getAuthUrl } from '../../../common/auth';
+import { isAuth, getGithubAuthUrl } from '../../../common/auth';
 
 export const auth = async req => {
   if (!isAuth(req)) {
@@ -7,7 +7,7 @@ export const auth = async req => {
       json: {
         error: 'not_authorized',
         message: 'please sign in',
-        href: getAuthUrl(),
+        href: '/login',
       },
     };
   }
