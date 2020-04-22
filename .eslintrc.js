@@ -44,11 +44,9 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: 'error',
     curly: ['error', 'all'],
+    'brace-style': ['error', '1tbs', { allowSingleLine: false }],
     'arrow-parens': ['warn', 'as-needed'],
-    camelcase: ['warn', { properties: 'never', ignoreDestructuring: true }],
-    '@typescript-eslint/camelcase': [
-      'warn',
-      { properties: 'never', ignoreDestructuring: true },
-    ],
+    camelcase: 'off',
+    '@typescript-eslint/camelcase': 'off',
   },
 };

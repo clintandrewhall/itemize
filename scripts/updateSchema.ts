@@ -1,9 +1,9 @@
 import { printSchema } from 'graphql';
 import fs from 'fs';
 import path from 'path';
-import { schema } from '../lib/common/data/schema';
+import { schema } from '../lib/data/schema';
 
-const schemaPath = path.resolve(__dirname, '../lib/common/data/schema.graphql');
+const schemaPath = path.resolve(__dirname, '../lib/data/schema.graphql');
 
 fs.writeFileSync(schemaPath, printSchema(schema));
 

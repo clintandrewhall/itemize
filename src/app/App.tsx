@@ -1,17 +1,43 @@
-import React from 'react';
+/**
+ * This file provided by Facebook is for non-commercial testing and evaluation
+ * purposes only.  Facebook reserves all rights not expressly granted.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+import 'todomvc-common';
+import 'todomvc-app-css/index.css';
+
+import * as React from 'react';
+
 import { QueryRenderer } from 'react-relay';
+import graphql from 'babel-plugin-relay/macro';
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
-import graphql from 'babel-plugin-relay/macro';
+import TodoApp from './components/TodoApp';
+import { AppQuery } from '../__generated__/AppQuery.graphql';
 
-import { fetchQuery } from '../fetch_query';
-import type {
-  AppQuery,
-  AppQueryResponse,
-} from './__generated__/AppQuery.graphql';
-import classes from './App.module.css';
+function fetchQuery(operation: any, variables: any) {
+  return fetch('/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: operation.text,
+      variables,
+    }),
+  }).then(response => {
+    return response.json();
+  });
+}
 
-const modernEnvironment: Environment = new Environment({
+const modernEnvironment = new Environment({
   network: Network.create(fetchQuery),
   store: new Store(new RecordSource()),
 });
@@ -21,23 +47,20 @@ export const App = () => (
     environment={modernEnvironment}
     query={graphql`
       query AppQuery {
-        hello
+        viewer {
+          ...TodoApp_viewer
+        }
       }
     `}
-    variables={{
-      // Mock authenticated ID that matches database
-      userId: 'me',
-    }}
-    render={({ error, props }: { error?: Error; props?: AppQueryResponse }) => {
-      if (props) {
-        return <div className={classes.app}>hello, {props.hello}</div>;
-      } else if (error) {
-        return <div>{error.message}</div>;
+    variables={{}}
+    render={({ error, props }) => {
+      if (props && props.viewer) {
+        return <TodoApp viewer={props.viewer} />;
+      } else if (props || error) {
+        console.error(`Unexpected data: ${props || error}`);
+      } else {
+        return <div>Loading</div>;
       }
-
-      return <div>Loading</div>;
     }}
   />
 );
-
-export default App;
