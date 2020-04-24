@@ -4,7 +4,11 @@ module.exports = {
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
     'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
     'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'plugin:react/recommended',
+    'plugin:relay/recommended',
+    'prettier/react',
   ],
+  plugins: ['babel', 'prettier', 'react', 'relay'],
   parserOptions: {
     ecmaVersion: 8,
     sourceType: 'module',
@@ -40,11 +44,9 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: 'error',
     curly: ['error', 'all'],
+    'brace-style': ['error', '1tbs', { allowSingleLine: false }],
     'arrow-parens': ['warn', 'as-needed'],
-    camelcase: ['warn', { properties: 'never', ignoreDestructuring: true }],
-    '@typescript-eslint/camelcase': [
-      'warn',
-      { properties: 'never', ignoreDestructuring: true },
-    ],
+    camelcase: 'off',
+    '@typescript-eslint/camelcase': 'off',
   },
 };

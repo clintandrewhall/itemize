@@ -1,10 +1,9 @@
-const fs = require('fs');
-const { resolve } = require('path');
-const { join } = require('path');
-const cp = require('child_process');
-const os = require('os');
+import fs from 'fs';
+import { resolve, join } from 'path';
+import cp from 'child_process';
+import os from 'os';
 
-const install = (lib, mod) => {
+const installer = (lib, mod) => {
   const modPath = join(lib, mod);
 
   // ensure path has package.json
@@ -19,9 +18,7 @@ const install = (lib, mod) => {
   cp.spawn(npmCmd, ['i'], { env: process.env, cwd: modPath, stdio: 'inherit' });
 };
 
-module.exports = {
-  install: (path) => {
-    const lib = resolve(__dirname, path);
-    fs.readdirSync(lib).forEach((mod) => install(lib, mod));
-  },
+export const install = path => {
+  const lib = resolve(__dirname, path);
+  fs.readdirSync(lib).forEach(mod => installer(lib, mod));
 };

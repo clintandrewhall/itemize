@@ -2,10 +2,11 @@
 wonder-w6v
 
 @static
+folder build
 
 @http
-get /
 get /admin
+get /github
 get /graphql
 get /login
 post /graphql

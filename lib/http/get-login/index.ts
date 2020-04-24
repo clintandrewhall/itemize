@@ -1,19 +1,24 @@
 import arc from '@architect/functions';
-import { github } from '../../common/github';
+import { isAuth, getGithubAuthUrl } from '../../common/auth';
 
-const login = async request => {
-  if (request.query.code) {
-    const account = await github(request);
+const html = `
+<!doctype html>
+<html>
+<body>
+<a href=${getGithubAuthUrl()}>Sign in with GitHub</a>
+</body>
+</html>`;
 
+async function http(req) {
+  if (isAuth(req)) {
     return {
-      session: { account },
       location: '/admin',
     };
-  } else {
-    return {
-      location: '/?authorized=false',
-    };
   }
-};
 
-export const handler = arc.http.async(login);
+  return {
+    html,
+  };
+}
+
+export const handler = arc.http.async(http);

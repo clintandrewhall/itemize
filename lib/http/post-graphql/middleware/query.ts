@@ -1,18 +1,5 @@
 import { graphql } from 'graphql';
-import { makeExecutableSchema } from 'graphql-tools';
-import typeDefs from '../schema.graphql';
-
-// read resolvers
-import { readAccount, mutateAccount, hello } from '../resolvers';
-
-// combine resolvers and schema
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers: {
-    Query: { hello, account: readAccount },
-    Mutation: { account: mutateAccount },
-  },
-});
+import { schema } from '../../../data/schema';
 
 /** graphql middleware */
 export const query = async ({ body, session }) => {
