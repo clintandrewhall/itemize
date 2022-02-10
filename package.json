@@ -89,7 +89,7 @@
     "graphql-compiler": "^1.7.0",
     "graphql-relay": "^0.6.0",
     "http-proxy-middleware": "^1.0.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "prettier": "^2.0.4",
     "react-scripts": "^3.4.1",
     "relay-compiler": "^9.0.0",
